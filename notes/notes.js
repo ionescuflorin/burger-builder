@@ -268,3 +268,6 @@ const transformedingredients = Object.keys(props.ingredients).map(igKey => {
 //     }, 0);
 //     this.setState({ purchasable: sum > 0 });
 //   };
+
+// ref 3 - set dynamic classes
+{/* <button className={`Button ${props.btnType}`} onClick={props.clicked}>{props.children}</button> */}
