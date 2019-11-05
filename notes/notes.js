@@ -270,5 +270,19 @@ const transformedingredients = Object.keys(props.ingredients).map(igKey => {
 //   };
 
 // ref 3 - set dynamic classes
+// 1 way
 {/* <button className={`Button ${props.btnType}`} onClick={props.clicked}>{props.children}</button> */}
+
+// 2 way
 // className={props.active ? 'active' : null}
+
+// 3 way
+// let attachClasses = ['SideDrawer','Close']
+// if(props.open) {
+//     attachClasses = ['SideDrawer','Open']
+// }
+
+// return (
+// <React.Fragment>
+//   <BackDrop show={props.open} clicked={props.closed}/>
+//   <div className={attachClasses.join(' ')}>
