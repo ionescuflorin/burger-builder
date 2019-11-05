@@ -271,3 +271,4 @@ const transformedingredients = Object.keys(props.ingredients).map(igKey => {
 
 // ref 3 - set dynamic classes
 {/* <button className={`Button ${props.btnType}`} onClick={props.clicked}>{props.children}</button> */}
+// className={props.active ? 'active' : null}
