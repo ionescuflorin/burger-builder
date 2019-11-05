@@ -22,7 +22,6 @@ class BurgerBuilder extends React.Component {
     }
 
     addIngredientHandler = (type) => {
-        console.log('tipe', type)
         const oldCount = this.state.ingredients[type];
         const updatedCount = oldCount + 1;
         const updatedIngredients = {
@@ -38,14 +37,35 @@ class BurgerBuilder extends React.Component {
     }
 
     removeIngredientHandler = (type) => {
-
+        const oldCount = this.state.ingredients[type];
+        if(oldCount <= 0) {
+            // nothing happnes if we tried to reduce an alement from 0
+            return;
+        }
+        const updatedCount = oldCount - 1;
+        const updatedIngredients = {
+            ...this.state.ingredients
+        }
+        updatedIngredients[type] =  updatedCount;
+        // update price
+        const priceDeduction = INGREDIENT_PRICES[type]
+        const oldPrice = this.state.totalPrice;
+        const newPrice = oldPrice - priceDeduction;
+        this.setState({totalPrice: newPrice, ingredients: updatedIngredients})
     }
 
     render() {
+        const disabledInfo = {
+            ...this.state.ingredients
+        }
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <= 0
+        }
+
         return (
            <React.Fragment>
                <Burger ingredients={this.state.ingredients} />
-               <BuildControls ingredientAdded={this.addIngredientHandler} />
+               <BuildControls ingredientAdded={this.addIngredientHandler} ingredientRemoved={this.removeIngredientHandler} disabled={disabledInfo}/>
            </React.Fragment>
         );
     }
