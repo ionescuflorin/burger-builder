@@ -257,3 +257,14 @@ const transformedingredients = Object.keys(props.ingredients).map(igKey => {
 //         transformedIngredients.push(<BurgerIngredient key={key + i} type={key} />);
 //     }
 // }
+
+
+// ref 2
+// You can use Object.values to get an array of values, which i think is simpler and cleaner solution :)
+
+//   updatePurchaseState = ingredients => {
+//     const sum = Object.values(ingredients).reduce((sum, curr) => {
+//       return sum + curr;
+//     }, 0);
+//     this.setState({ purchasable: sum > 0 });
+//   };
