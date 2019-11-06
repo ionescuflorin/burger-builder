@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
@@ -28,4 +29,4 @@ if (transformedingredients.length === 0) {
   );
 };
 
-export default Burger;
+export default withRouter(Burger);

@@ -286,3 +286,25 @@ const transformedingredients = Object.keys(props.ingredients).map(igKey => {
 // <React.Fragment>
 //   <BackDrop show={props.open} clicked={props.closed}/>
 //   <div className={attachClasses.join(' ')}>
+
+// ref 4 
+/**
+ * 
+encodeURIComponent
+J.J · Lecture 254 · 2 months ago
+why are you using encodeURIComponent?..Is it required
+
+MLR Rooney
+MLR — Teaching Assistant · 2 months ago
+==================================
+
+Hi J.J,  Mr. Schwarzmüller states,  this app
+
+doesn't need encodeURIComponent (video time 1:29).
+
+His ingredient names don't have a space or special characters.
+
+But,  it's recommended for professional apps.
+
+Example:  When an ingredient name has a space:  hot peppers
+ */

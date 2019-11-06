@@ -95,28 +95,20 @@ class BurgerBuilder extends React.Component {
 
   purchaseContinueHandler = () => {
     //alert('You continue!');
-    this.setState({ loading: true });
-    // TIP: for your production app, calculate the total price on backend so the user can't manipulate the numbers
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Ionescu Florin',
-        address: {
-          street: 'TestStreet 1',
-          zipCode: '543534',
-          country: 'Romania'
-        },
-        email: 'test@test.com'
-      },
-      deliveryMethod: 'fastest'
-    };
-    axios
-      .post('/orders.json', order)
-      .then(response => {
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch(error => this.setState({ loading: false, purchasing: false }));
+    
+
+    // we want this result = http://localhost:3000/checkout?bacon=1&cheese=0&meat=1&salad=1
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      // see ref 4
+      queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
+    }
+    queryParams.push('price=' + this.state.totalPrice)
+    const queryString = queryParams.join('&')
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString
+    });
   };
 
   render() {
