@@ -33,6 +33,7 @@ class BurgerBuilder extends React.Component {
         // get the ingredients
         this.setState({ ingredients: response.data });
       })
+      // for error: Cannot read property 'data' of undefined
       .catch(error => {this.setState({error: true})});
   }
 

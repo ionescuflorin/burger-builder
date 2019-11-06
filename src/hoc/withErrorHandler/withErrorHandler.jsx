@@ -8,8 +8,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
     };
 
     // GLOBAL error handling
-    reqInterceptor = axios.interceptors.request.use(
-        req => {
+    reqInterceptor = axios.interceptors.request.use(req => {
       this.setState({ error: null });
       return req;
     });
@@ -20,6 +19,13 @@ const withErrorHandler = (WrappedComponent, axios) => {
         this.setState({ error: error });
       }
     );
+
+    componentWillUnmount() {
+      // delete dead interceptors
+    //   console.log('Will Unmount', this.reqInterceptor, this.resInterceptor) v214/m 6:30 test
+      axios.interceptors.request.eject(this.reqInterceptor);
+      axios.interceptors.response.eject(this.resInterceptor);
+    }
 
     errorConfirmedHandler = () => {
       this.setState({ error: null });
