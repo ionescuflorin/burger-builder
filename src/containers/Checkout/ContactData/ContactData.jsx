@@ -84,6 +84,7 @@ class ContactData extends React.Component {
           ]
         },
         value: '',
+        validation: {},
         valid: true
       
       }
@@ -115,7 +116,11 @@ class ContactData extends React.Component {
   };
 
   checkValidity = (value, rules) => {
-    let isValid = true
+    let isValid = true;
+    if(!rules) {
+      return true;
+    }
+
     if(rules.required) {
       // remove whitespaces at the begginig or the end
       isValid = value.trim() !== '' && isValid;
@@ -141,7 +146,7 @@ class ContactData extends React.Component {
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
-    const formIsValid = true;
+    let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid
     }
